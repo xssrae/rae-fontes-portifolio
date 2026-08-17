@@ -1,15 +1,15 @@
 /* Definições de variáveis de cor e estilos base */
 :root { 
-    --bg-primary: #fffaf3;
-    --bg-secondary: #faf4ed;
-    --bg-accent: #f2e9e1;
-    --text-secondary: #797593;
-    --text-primary: #575279;
-    --heading-color: #907aa9;
-    --accent-primary: #7b6891;
-    --accent-secondary: #b4637a;
-    --link-color: #56949f;
-    --accent-tertiary: #ea9d34; 
+    --bg-primary: #F2E9D8;
+    --bg-secondary: #F6E7C6;
+    --bg-accent: #E8CCC5;
+    --text-secondary: #807E79;
+    --text-primary: #807E79;
+    --heading-color: #BDCED3;
+    --accent-primary: #CFD4AE;
+    --accent-secondary: #E8CCC5;
+    --link-color: #BDCED3;
+    --accent-tertiary: #F6E7C6; 
 } 
 
 [data-theme="dark"] { 
@@ -17,7 +17,7 @@
     --bg-secondary: #2a273f;
     --bg-accent: #393552;
     --text-secondary: #908caa;
-    --text-primary: #e0def4;
+    --text-primary: #E3E3E3;
     --heading-color: #c4a7e7;
     --accent-primary: #9ccfd8;
     --accent-secondary: #eb6f92;
