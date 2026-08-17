@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+  --color-accent: #BDCED3;
+  --color-accent-dark: #CFD4AE;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --portfolio-text: #807E79;
+  --portfolio-bg: #F2E9D8;
+  --portfolio-surface: #F6E7C6;
+  --portfolio-accent-rose: #E8CCC5;
+  --portfolio-accent-sage: #CFD4AE;
+  --portfolio-accent-blue: #BDCED3;
+  --portfolio-accent-cream: #F6E7C6;
+}
+
+html.dark {
+  --portfolio-text: #E3E3E3;
+  --portfolio-bg: #0a0a0a;
+  --portfolio-surface: #111111;
+}
+
+body {
+  font-family: var(--font-mono);
+  background-color: var(--portfolio-bg);
+  color: var(--portfolio-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.dark body {
+  background-color: var(--portfolio-bg);
+  color: var(--portfolio-text);
+}
