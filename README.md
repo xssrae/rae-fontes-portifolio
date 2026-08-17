@@ -1,6 +1,6 @@
 # {xssrae.dev}
 
-Portfólio pessoal da Raquel Fontes, construído com React, TypeScript, Vite e Tailwind CSS.
+https://raedev.netlify.app/
 
 ---
 
