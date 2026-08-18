@@ -49,7 +49,7 @@ body {
     overflow: hidden; 
 }
 .theme-toggle-container button:hover {
-    background-color: var(--highlight);
+    background-color: var(--secondary);
 }
 
 
@@ -76,7 +76,7 @@ body {
   display: inline-block;
   width: 8px;
   height: 1.2em;
-  background-color: currentColor; 
+  background-color: var(--textHighlight); 
   animation: blink 1s infinite;
   margin-left: 2px;
   vertical-align: middle;

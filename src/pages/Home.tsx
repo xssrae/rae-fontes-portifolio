@@ -16,6 +16,7 @@ import { projects_eng } from '@/data/projects/eng'
 import { jobs_pt } from '@/data/jobs/pt'
 import { jobs_eng } from '@/data/jobs/eng'
 import { useLanguage } from '@/context/LanguageContext'
+import profileImage from '@/assets/profile.png'
 
 export default function Home() {
   const { lang } = useLanguage()
@@ -166,7 +167,7 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col items-center gap-6 relative group shrink-0">
-            <PhotoFrame alt={profile.name} />
+            <PhotoFrame src={profileImage} alt={profile.name} />
             <NowPlaying />
           </div>
         </PageContainer>

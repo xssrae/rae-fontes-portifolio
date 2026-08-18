@@ -23,7 +23,7 @@ html {
 }
 
 html.dark {
-  --portfolio-text: #E3E3E3;
+  --portfolio-text: #F2E9D8;
   --portfolio-bg: #0a0a0a;
   --portfolio-surface: #111111;
 }
