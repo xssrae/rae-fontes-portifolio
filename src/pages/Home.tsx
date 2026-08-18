@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo} from 'react'
 import ScrambleText from '@/components/ui/ScrambleText'
 import ParticlesBackground from '@/components/ui/ParticlesBackground'
 import PhotoFrame from '@/components/ui/PhotoFrame'
@@ -11,8 +11,10 @@ import { Mail, Calendar, Clock, ArrowRight, ChevronDown, Star, GitFork, ArrowUpR
 import { profile } from '@/data/profile'
 import { Link } from 'react-router-dom'
 import { posts } from '@/data/posts'
-import { projects } from '@/data/projects'
-import { jobs } from '@/data/jobs/jobs'
+import { projects_pt } from '@/data/projects/pt'
+import { projects_eng } from '@/data/projects/eng'
+import { jobs_pt } from '@/data/jobs/pt'
+import { jobs_eng } from '@/data/jobs/eng'
 import { useLanguage } from '@/context/LanguageContext'
 import profileImage from '@/assets/profile.png'
 
@@ -34,14 +36,15 @@ export default function Home() {
       skillCategories: {
         languages: 'Linguagens',
         frameworks: 'Frameworks',
-        databases: 'Bancos de dados',
+        dados: 'Dados',
+        ai: 'Inteligência Artificial',
         tools: 'Ferramentas',
         architecture: 'Arquitetura',
       },
       experienceLabel: '/EXPERIENCIA',
       experienceTitle: 'Experiência',
       experienceDescription: 'Um recorte da minha trajetória profissional, com responsabilidades e tecnologias que usei no caminho.',
-      noExperience: 'Adicione suas experiências em src/data/jobs/jobs.ts',
+      noExperience: 'Adicione suas experiências em src/data/jobs/pt.ts',
       projectsLabel: '/PROJETOS',
       projectsTitle: 'Meus projetos',
       searchPlaceholder: 'Buscar por nome, linguagem, tags...',
@@ -64,11 +67,12 @@ export default function Home() {
         databases: 'Databases',
         tools: 'Tools',
         architecture: 'Architecture',
+        ai: 'Inteligência Artificial',
       },
       experienceLabel: '/EXPERIENCE',
       experienceTitle: 'Experience',
       experienceDescription: 'A quick look at my professional path, responsibilities, and technologies used along the way.',
-      noExperience: 'Add your experience entries in src/data/jobs/jobs.ts',
+      noExperience: 'Add your experience entries in src/data/jobs/eng.ts',
       projectsLabel: '/PROJECTS',
       projectsTitle: 'My projects',
       searchPlaceholder: 'Search by name, language, tags...',
@@ -80,15 +84,22 @@ export default function Home() {
 
   const currentTexts = interfaceTexts[lang]
   const profileData = profile[lang]
+  const jobs = lang === 'pt' ? jobs_pt : jobs_eng
   const previewJobs = jobs.slice(0, 2)
   const skillCategories = Object.entries(profile.skills).filter(([, skillItems]) => skillItems.length > 0)
+  const projects = lang === 'pt' ? projects_pt : projects_eng
+
+  console.log('DEBUG Home - lang:', lang)
+  console.log('DEBUG Home - projects_pt:', projects_pt)
+  console.log('DEBUG Home - projects_eng:', projects_eng)
+  console.log('DEBUG Home - projects:', projects)
 
   const filteredProjects = useMemo(() => {
     const normalizedQuery = searchQuery.trim().toLowerCase()
     let resultProjects = projects
 
     if (normalizedQuery) {
-      resultProjects = projects.filter((projectItem) => {
+      resultProjects = resultProjects.filter((projectItem) => {
         const matchesTitle = projectItem.title?.toLowerCase().includes(normalizedQuery)
         const matchesLanguage = projectItem.languages?.some((programmingLanguage) =>
           programmingLanguage.toLowerCase().includes(normalizedQuery)
@@ -98,7 +109,7 @@ export default function Home() {
     }
 
     return normalizedQuery ? resultProjects : resultProjects.slice(0, 3)
-  }, [searchQuery])
+  }, [searchQuery, lang, projects])
 
   function scrollToSkillsSection() {
     document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' })
@@ -250,7 +261,7 @@ export default function Home() {
                         {job.company}
                       </p>
                       <p className="mt-4 opacity-70 text-base md:text-lg leading-relaxed text-[var(--portfolio-text)] max-w-3xl line-clamp-2">
-                        {job.description[lang]}
+                        {job.description}
                       </p>
                       <div className="flex flex-wrap gap-2 mt-6">
                         {job.technologies.map((technology) => (
@@ -278,75 +289,6 @@ export default function Home() {
                 <p className="font-mono text-base opacity-70 text-[var(--portfolio-text)]">
                   $ {currentTexts.noExperience}
                 </p>
-              </div>
-            )}
-          </FadeIn>
-        </PageContainer>
-      </section>
-
-      <section id="blog" className="relative py-24 scroll-mt-10">
-        <PageContainer>
-          <FadeIn>
-            <div className="mb-10">
-              <p className="text-sm font-mono opacity-50 text-[var(--portfolio-text)]">{currentTexts.blogLabel}</p>
-              <Link to="/blog" className="inline-flex items-center gap-3 mt-1 group">
-                <h2 className="text-4xl lg:text-[2.75rem] font-bold font-mono text-[var(--portfolio-text)] group-hover:text-neutral-600 dark:group-hover:text-neutral-300 transition-colors">
-                  {currentTexts.blogTitle}
-                </h2>
-                <ArrowRight size={28} className="text-[var(--portfolio-text)] group-hover:translate-x-1 group-hover:text-neutral-600 dark:group-hover:text-neutral-300 transition-all" />
-              </Link>
-            </div>
-          </FadeIn>
-
-          <FadeIn delay={0.1}>
-            {highlightPost && (
-              <div className="border border-black/10 dark:border-white/10 rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 flex flex-col xl:flex-row bg-white dark:bg-black">
-                <Link to={`/blog/${highlightPost.slug}`} className="xl:w-1/2 shrink-0 block h-80 xl:h-auto relative overflow-hidden group bg-black/5 dark:bg-white/5 flex items-center justify-center">
-                  {highlightPost.image_path ? (
-                    <>
-                      <img src={highlightPost.image_path} alt={highlightPost.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 dark:from-black/60 to-transparent" />
-                    </>
-                  ) : (
-                    <span className="text-xs opacity-40 font-mono text-[var(--portfolio-text)]">{currentTexts.noImage}</span>
-                  )}
-                </Link>
-
-                <div className="flex-1 p-8 lg:p-10 flex flex-col bg-white dark:bg-black">
-                  <span className="self-start font-mono text-[0.65rem] tracking-widest uppercase px-3 py-1.5 rounded-full mb-5 border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 font-semibold text-[var(--portfolio-text)]">
-                    {currentTexts.featuredPost}
-                  </span>
-
-                  <h3 className="text-3xl font-bold mb-4">
-                    <Link
-                      to={`/blog/${highlightPost.slug}`}
-                      className="group/title inline-flex items-center gap-2 text-[var(--portfolio-text)] hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors"
-                    >
-                      {highlightPost.title}
-                      <ArrowRight size={20} className="shrink-0 translate-x-0 group-hover/title:translate-x-1 transition-transform" />
-                    </Link>
-                  </h3>
-
-                  <p className="opacity-70 leading-relaxed mb-8 text-[var(--portfolio-text)] text-lg">
-                    {highlightPost.excerpt}
-                  </p>
-
-                  {(highlightPost.readTime || highlightPost.date) && (
-                    <div className="mt-auto flex items-center justify-between pt-5 border-t border-black/10 dark:border-white/10 font-mono text-xs opacity-50 text-[var(--portfolio-text)]">
-                      <div className="flex items-center gap-4">
-                        {highlightPost.date && (
-                          <span className="flex items-center gap-1.5"><Calendar size={14} /> {highlightPost.date}</span>
-                        )}
-                        {highlightPost.readTime && (
-                          <span className="flex items-center gap-1.5"><Clock size={14} /> {highlightPost.readTime}</span>
-                        )}
-                      </div>
-                    <Link to={`/blog/${highlightPost.slug}`} className="flex items-center gap-1.5 group font-semibold text-[var(--portfolio-text)] hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors">
-                        {currentTexts.readMore} <ArrowRight size={14} className="group-hover:opacity-100 transition-opacity" />
-                      </Link>
-                    </div>
-                  )}
-                </div>
               </div>
             )}
           </FadeIn>
@@ -439,6 +381,75 @@ export default function Home() {
                 </div>
               )}
             </div>
+          </FadeIn>
+        </PageContainer>
+      </section>
+
+      <section id="blog" className="relative py-24 scroll-mt-10">
+        <PageContainer>
+          <FadeIn>
+            <div className="mb-10">
+              <p className="text-sm font-mono opacity-50 text-[var(--portfolio-text)]">{currentTexts.blogLabel}</p>
+              <Link to="/blog" className="inline-flex items-center gap-3 mt-1 group">
+                <h2 className="text-4xl lg:text-[2.75rem] font-bold font-mono text-[var(--portfolio-text)] group-hover:text-neutral-600 dark:group-hover:text-neutral-300 transition-colors">
+                  {currentTexts.blogTitle}
+                </h2>
+                <ArrowRight size={28} className="text-[var(--portfolio-text)] group-hover:translate-x-1 group-hover:text-neutral-600 dark:group-hover:text-neutral-300 transition-all" />
+              </Link>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.1}>
+            {highlightPost && (
+              <div className="border border-black/10 dark:border-white/10 rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 flex flex-col xl:flex-row bg-white dark:bg-black">
+                <Link to={`/blog/${highlightPost.slug}`} className="xl:w-1/2 shrink-0 block h-80 xl:h-auto relative overflow-hidden group bg-black/5 dark:bg-white/5 flex items-center justify-center">
+                  {highlightPost.image_path ? (
+                    <>
+                      <img src={highlightPost.image_path} alt={highlightPost.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 dark:from-black/60 to-transparent" />
+                    </>
+                  ) : (
+                    <span className="text-xs opacity-40 font-mono text-[var(--portfolio-text)]">{currentTexts.noImage}</span>
+                  )}
+                </Link>
+
+                <div className="flex-1 p-8 lg:p-10 flex flex-col bg-white dark:bg-black">
+                  <span className="self-start font-mono text-[0.65rem] tracking-widest uppercase px-3 py-1.5 rounded-full mb-5 border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 font-semibold text-[var(--portfolio-text)]">
+                    {currentTexts.featuredPost}
+                  </span>
+
+                  <h3 className="text-3xl font-bold mb-4">
+                    <Link
+                      to={`/blog/${highlightPost.slug}`}
+                      className="group/title inline-flex items-center gap-2 text-[var(--portfolio-text)] hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors"
+                    >
+                      {highlightPost.title}
+                      <ArrowRight size={20} className="shrink-0 translate-x-0 group-hover/title:translate-x-1 transition-transform" />
+                    </Link>
+                  </h3>
+
+                  <p className="opacity-70 leading-relaxed mb-8 text-[var(--portfolio-text)] text-lg">
+                    {highlightPost.excerpt}
+                  </p>
+
+                  {(highlightPost.readTime || highlightPost.date) && (
+                    <div className="mt-auto flex items-center justify-between pt-5 border-t border-black/10 dark:border-white/10 font-mono text-xs opacity-50 text-[var(--portfolio-text)]">
+                      <div className="flex items-center gap-4">
+                        {highlightPost.date && (
+                          <span className="flex items-center gap-1.5"><Calendar size={14} /> {highlightPost.date}</span>
+                        )}
+                        {highlightPost.readTime && (
+                          <span className="flex items-center gap-1.5"><Clock size={14} /> {highlightPost.readTime}</span>
+                        )}
+                      </div>
+                    <Link to={`/blog/${highlightPost.slug}`} className="flex items-center gap-1.5 group font-semibold text-[var(--portfolio-text)] hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors">
+                        {currentTexts.readMore} <ArrowRight size={14} className="group-hover:opacity-100 transition-opacity" />
+                      </Link>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
           </FadeIn>
         </PageContainer>
       </section>

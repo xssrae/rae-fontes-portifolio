@@ -1,14 +1,6 @@
-export interface Project {
-  slug: string
-  title: string
-  description: string
-  githubUrl: string
-  stars: number
-  forks: number
-  languages: string[]
-}
+import type { Project } from './types'
 
-export const projects: Project[] = [
+export const projects_pt: Project[] = [
   {
     slug: 'dev-skill-tracker',
     title: 'Dev Skill Tracker',
@@ -17,7 +9,7 @@ export const projects: Project[] = [
     stars: 100,
     forks: 50,
     languages: ['Java', 'Spring Boot', 'Apache Kafka']
-  },
+},
   {
     slug: 'etl-pyspark',
     title: 'ETL Pipeline com PySpark',

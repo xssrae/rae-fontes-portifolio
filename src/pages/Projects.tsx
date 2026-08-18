@@ -1,7 +1,8 @@
 import { useState, useMemo, useEffect } from 'react'
 import { Search, SearchX, RotateCcw, Star, GitFork, ArrowUpRight } from 'lucide-react'
 import FadeIn from '@/components/ui/FadeIn'
-import { projects } from '@/data/projects'
+import { projects_pt } from '@/data/projects/pt'
+import { projects_eng } from '@/data/projects/eng'
 import { useLanguage } from '@/context/LanguageContext'
 
 export default function Projects() {
@@ -15,15 +16,15 @@ export default function Projects() {
   const pageTexts = {
     pt: {
       label: '/PROJETOS',
-      title: 'Meus projetos',
+      title: 'Meus projetos recentes',
       searchPlaceholder: 'Buscar por nome, linguagem, tags...',
       nothingFound: 'Nada encontrado para',
       noProjects: 'Adicione seus projetos em src/data/projects.ts',
-      clearSearch: 'LIMPAR BUSCA'
+      clearSearch: 'LIMPAR BUSCA',
     },
     en: {
       label: '/PROJECTS',
-      title: 'My projects',
+      title: 'My recent projects',
       searchPlaceholder: 'Search by name, language, tags...',
       nothingFound: 'Nothing found for',
       noProjects: 'Add your projects in src/data/projects.ts',
@@ -32,6 +33,12 @@ export default function Projects() {
   }
 
   const currentTexts = pageTexts[lang]
+  const projects = lang === 'pt' ? projects_pt : projects_eng
+
+  console.log('DEBUG Projects - lang:', lang)
+  console.log('DEBUG Projects - projects_pt:', projects_pt)
+  console.log('DEBUG Projects - projects_eng:', projects_eng)
+  console.log('DEBUG Projects - projects:', projects)
 
   const filteredProjects = useMemo(() => {
     const normalizedQuery = searchQuery.trim().toLowerCase()
@@ -44,7 +51,7 @@ export default function Projects() {
       )
       return matchesTitle || matchesLanguage
     })
-  }, [searchQuery])
+  }, [searchQuery, lang, projects])
 
   return (
     <main className="relative min-h-screen px-6 lg:px-10 pt-32 pb-16 w-full max-w-5xl mx-auto">

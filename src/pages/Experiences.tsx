@@ -2,7 +2,8 @@ import { useEffect } from 'react'
 import { BriefcaseBusiness, CalendarDays, MapPin } from 'lucide-react'
 import FadeIn from '@/components/ui/FadeIn'
 import { useLanguage } from '@/context/LanguageContext'
-import { jobs } from '@/data/jobs/jobs'
+import { jobs_pt } from '@/data/jobs/pt'
+import { jobs_eng } from '@/data/jobs/eng'
 
 export default function Experiences() {
   const { lang } = useLanguage()
@@ -15,22 +16,25 @@ export default function Experiences() {
     pt: {
       label: '/EXPERIENCIA',
       title: 'Experiência',
-      description: 'Minha trajetória profissional, responsabilidades e tecnologias usadas em cada etapa.',
-      empty: 'Adicione suas experiências em src/data/jobs/jobs.ts',
-      current: 'Atual',
+      description:
+        'Um recorte da minha trajetória profissional, com responsabilidades e tecnologias que usei no caminho.',
+      current: 'Atualmente',
+      empty: 'Adicione suas experiências em src/data/jobs/pt.ts',
       technologies: 'Tecnologias',
     },
     en: {
       label: '/EXPERIENCE',
       title: 'Experience',
-      description: 'My professional path, responsibilities, and technologies used at each step.',
-      empty: 'Add your experience entries in src/data/jobs/jobs.ts',
-      current: 'Current',
+      description:
+        'A quick look at my professional path, responsibilities, and technologies used along the way.',
+      current: 'Currently',
+      empty: 'Add your experience entries in src/data/jobs/eng.ts',
       technologies: 'Technologies',
     },
   }
 
   const currentTexts = pageTexts[lang]
+  const jobs = lang === 'pt' ? jobs_pt : jobs_eng
 
   return (
     <main className="relative min-h-screen px-6 lg:px-10 pt-32 pb-16 w-full max-w-5xl mx-auto">
@@ -86,7 +90,7 @@ export default function Experiences() {
                     {job.company}
                   </p>
                   <p className="mt-5 text-base md:text-lg leading-relaxed opacity-80 text-[var(--portfolio-text)] max-w-3xl">
-                    {job.description[lang]}
+                    {job.description}
                   </p>
 
                   {job.technologies.length > 0 && (
