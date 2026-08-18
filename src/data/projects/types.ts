@@ -7,5 +7,3 @@ export interface Project {
   forks: number
   languages: string[]
 }
-
-export const projects: Project[] = []
