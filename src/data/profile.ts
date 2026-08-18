@@ -2,9 +2,9 @@ export const profile = {
   name: 'Raquel Fontes',
   handle: 'raeccoon',
   location: 'São Paulo, SP',
-  email: 'raquel.fontes@example.com',
-  github: 'github.com/xssrae',
-  linkedin: 'linkedin.com/in/xssrae',
+  email: 'fontesraquel624@gmail.com',
+  github: 'https://github.com/xssrae',
+  linkedin: 'https://linkedin.com/in/xssrae',
   
   pt: {
     role: 'Jr Software Engineer · Backend Developer',
@@ -22,7 +22,7 @@ export const profile = {
 
   skills: {
     languages: ['Java', 'Kotlin', 'Python'],
-    frameworks: ['Spring', 'Node.js', 'Pandas'],
+    frameworks: ['Spring Boot', 'Pandas'],
     databases: ['Apache Cassandra', 'PostgreSQL'],
     messaging: ['Apache Kafka'],
     devops: ['Git', 'Docker', 'Terraform'],
