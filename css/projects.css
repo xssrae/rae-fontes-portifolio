@@ -52,7 +52,7 @@ body {
     overflow: hidden; 
 }
 .theme-toggle-container button:hover {
-    background-color: var(--bg-accent); /* Cor de fundo do botão no hover */
+    background-color: var(--accent-primary); /* Cor de fundo do botão no hover */
 }
 
 /* Efeito Ripple */
