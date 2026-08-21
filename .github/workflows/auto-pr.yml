@@ -1,0 +1,41 @@
+name: Auto Create PR
+
+on:
+  push:
+    branches:
+      - 'feature/**'
+
+jobs:
+  auto-pr:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/feature/')
+    
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v6
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        base: dev
+        title: ${{ github.event.head_commit.message }}
+        body: |
+          ## 📝 Changes
+          
+          This PR was automatically created when the feature branch was pushed.
+          
+          ### Branch Pattern
+          - Follows pattern: `feature/nome-da-branch/feat: detalhe sobre a mudanca`
+          
+          ### Workflow
+          - Created from feature branch → dev
+          - Merges to dev for local build testing
+          - Ready for review and testing
+          
+          ---
+          *Automated PR from ${{ github.actor }}*
+        labels: automated, feature
+        draft: false
+        delete-branch: false

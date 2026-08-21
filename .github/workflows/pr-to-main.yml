@@ -1,0 +1,44 @@
+name: PR to Main
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - dev
+
+jobs:
+  create-pr-to-main:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'dev'
+    
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Create PR to Main
+      uses: peter-evans/create-pull-request@v6
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        branch: release/${{ github.event.pull_request.head.ref }}
+        base: main
+        title: "Release: ${{ github.event.pull_request.title }}"
+        body: |
+          ## 🚀 Release to Production
+          
+          This PR was automatically created after merging to dev.
+          
+          ### Source
+          - Merged from: ${{ github.event.pull_request.head.ref }}
+          - Original PR: #${{ github.event.pull_request.number }}
+          
+          ### Next Steps
+          - Review and test in production environment
+          - Merge to main to trigger Netlify deployment
+          
+          ---
+          *Automated release PR from ${{ github.actor }}*
+        labels: release, production
+        draft: false
+        delete-branch: true
