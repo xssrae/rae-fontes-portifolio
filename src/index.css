@@ -13,29 +13,29 @@ html {
 }
 
 :root {
-  --portfolio-text: #807E79;
-  --portfolio-bg: #F2E9D8;
-  --portfolio-surface: #F6E7C6;
-  --portfolio-accent-rose: #E8CCC5;
-  --portfolio-accent-sage: #CFD4AE;
-  --portfolio-accent-blue: #BDCED3;
-  --portfolio-accent-cream: #F6E7C6;
+  --bg-color: #ede3d1;
+  --text-color: #7a685a;
+  --text-color-hover: #a58c7b;
+  --button-color-hover: #BABF94;
+  --box-color-hover: rgba(186, 191, 148, 0.5);
 }
 
 html.dark {
-  --portfolio-text: #E3E3E3;
-  --portfolio-bg: #0a0a0a;
-  --portfolio-surface: #111111;
+  --dark-bg-color: #161411;
+  --dark-text-color: #F6E7C6;
+  --dark-text-color-hover: #eaca9a;
+  --dark-box-color-hover: rgba(186, 191, 148, 0.3);
+  --dark-button-color-hover: #110f0d;
 }
 
 body {
   font-family: var(--font-mono);
-  background-color: var(--portfolio-bg);
-  color: var(--portfolio-text);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 html.dark body {
-  background-color: var(--portfolio-bg);
-  color: var(--portfolio-text);
+  background-color: var(--dark-bg-color);
+  color: var(--dark-text-color);
 }

@@ -51,7 +51,7 @@ export default function Footer() {
         `}
       </style>
 
-      <p className="text-sm font-mono opacity-70 text-[var(--portfolio-text)] flex items-center gap-1.5">
+      <p className="text-sm font-mono opacity-70 text-[var(--text-color)] dark:text-[var(--dark-text-color)] flex items-center gap-1.5">
         © {currentYear}
         <span className="font-bold cursor-default hover-rainbow">
           {profile.name}
@@ -65,7 +65,7 @@ export default function Footer() {
             <div title={texts[lang].emailTitle}>
               <MagneticButton
                 onClick={() => navigateToLink(`mailto:${profile.email}`)}
-                className="flex items-center gap-2.5 px-6 py-2.5 rounded-full border border-black/15 dark:border-white/15 bg-transparent hover:bg-white dark:hover:bg-black transition-colors text-xs font-mono tracking-widest uppercase text-[var(--portfolio-text)]"
+                className="flex items-center gap-2.5 px-6 py-2.5 rounded-full border border-black/15 dark:border-white/15 bg-transparent hover:bg-[var(--button-color-hover)] dark:hover:bg-[var(--dark-button-color-hover)] transition-colors text-xs font-mono tracking-widest uppercase text-[var(--text-color)] dark:text-[var(--dark-text-color)]"
               >
                 <Mail size={16} strokeWidth={1.5} /> EMAIL
               </MagneticButton>
@@ -75,7 +75,7 @@ export default function Footer() {
             <div title={texts[lang].githubTitle}>
               <MagneticButton
                 onClick={() => navigateToLink(profile.github)}
-                className="flex items-center gap-2.5 px-6 py-2.5 rounded-full border border-black/15 dark:border-white/15 bg-transparent hover:bg-white dark:hover:bg-black transition-colors text-xs font-mono tracking-widest uppercase text-[var(--portfolio-text)]"
+                className="flex items-center gap-2.5 px-6 py-2.5 rounded-full border border-black/15 dark:border-white/15 bg-transparent hover:bg-[var(--button-color-hover)] dark:hover:bg-[var(--dark-button-color-hover)] transition-colors text-xs font-mono tracking-widest uppercase text-[var(--text-color)] dark:text-[var(--dark-text-color)]"
               >
                 <GithubIcon width={16} height={16} /> GITHUB
               </MagneticButton>
@@ -85,7 +85,7 @@ export default function Footer() {
             <div title={texts[lang].linkedinTitle}>
               <MagneticButton
                 onClick={() => navigateToLink(profile.linkedin)}
-                className="flex items-center gap-2.5 px-6 py-2.5 rounded-full border border-black/15 dark:border-white/15 bg-transparent hover:bg-white dark:hover:bg-black transition-colors text-xs font-mono tracking-widest uppercase text-[var(--portfolio-text)]"
+                className="flex items-center gap-2.5 px-6 py-2.5 rounded-full border border-black/15 dark:border-white/15 bg-transparent hover:bg-[var(--button-color-hover)] dark:hover:bg-[var(--dark-button-color-hover)] transition-colors text-xs font-mono tracking-widest uppercase text-[var(--text-color)] dark:text-[var(--dark-text-color)]"
               >
                 <LinkedinIcon width={16} height={16} /> LINKEDIN
               </MagneticButton>
