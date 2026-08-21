@@ -19,7 +19,6 @@ jobs:
       uses: peter-evans/create-pull-request@v6
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        branch: dev
         base: dev
         title: ${{ github.event.head_commit.message }}
         body: |
