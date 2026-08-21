@@ -28,13 +28,13 @@ export default function Blog() {
     <main className="relative min-h-screen px-6 lg:px-10 pt-32 pb-16 w-full">
       <FadeIn>
         <div className="mb-12">
-          <p className="text-sm font-mono opacity-50 text-[var(--portfolio-text)] mb-2 uppercase tracking-wider">
+          <p className="text-sm font-mono opacity-50 text-[var(--text-color)] dark:text-[var(--dark-text-color)] mb-2 uppercase tracking-wider">
             {currentTexts.label}
           </p>
-          <h1 className="text-4xl lg:text-5xl font-bold font-mono text-[var(--portfolio-text)] mb-4">
+          <h1 className="text-4xl lg:text-5xl font-bold font-mono text-[var(--text-color)] dark:text-[var(--dark-text-color)] mb-4">
             {currentTexts.title}
           </h1>
-          <p className="text-lg opacity-70 text-[var(--portfolio-text)] max-w-2xl leading-relaxed">
+          <p className="text-lg opacity-70 text-[var(--text-color)] dark:text-[var(--dark-text-color)] max-w-2xl leading-relaxed">
             {currentTexts.description}
           </p>
         </div>
@@ -58,23 +58,23 @@ export default function Blog() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </>
                 ) : (
-                  <span className="text-xs font-mono opacity-40 text-[var(--portfolio-text)]">
+                  <span className="text-xs font-mono opacity-40 text-[var(--text-color)] dark:text-[var(--dark-text-color)]">
                     {currentTexts.noImage}
                   </span>
                 )}
               </div>
 
               <div className="p-6 flex flex-col flex-1">
-                <h2 className="text-xl font-bold text-[var(--portfolio-text)] mb-3 line-clamp-2 group-hover:text-neutral-600 dark:group-hover:text-neutral-300 transition-colors">
+                <h2 className="text-xl font-bold text-[var(--text-color)] dark:text-[var(--dark-text-color)] mb-3 line-clamp-2 group-hover:text-[var(--text-color-hover)] dark:group-hover:text-[var(--dark-text-color-hover)] transition-colors">
                   {blogPost.title}
                 </h2>
-                
-                <p className="text-[var(--portfolio-text)] opacity-70 text-sm leading-relaxed mb-6 line-clamp-3">
+
+                <p className="text-[var(--text-color)] dark:text-[var(--dark-text-color)] opacity-70 text-sm leading-relaxed mb-6 line-clamp-3">
                   {blogPost.excerpt}
                 </p>
 
                 {(blogPost.readTime || blogPost.date) && (
-                  <div className="mt-auto flex items-center gap-4 pt-5 border-t border-black/10 dark:border-white/10 font-mono text-xs opacity-50 text-[var(--portfolio-text)]">
+                  <div className="mt-auto flex items-center gap-4 pt-5 border-t border-black/10 dark:border-white/10 font-mono text-xs opacity-50 text-[var(--text-color)] dark:text-[var(--dark-text-color)]">
                     {blogPost.readTime && (
                       <span className="flex items-center gap-1.5">
                         <Clock size={14} /> {blogPost.readTime}

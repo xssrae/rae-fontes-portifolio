@@ -25,3 +25,4 @@ dist-ssr
 
 # Variaveis de ambiente
 .env
+/.env.local

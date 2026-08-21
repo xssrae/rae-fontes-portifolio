@@ -1,3 +1,5 @@
 {
-    "liveServer.settings.port": 5174
+    "liveServer.settings.port": 5174,
+    "chat.tools.terminal.terminalProfile.windows": {
+    }
 }
